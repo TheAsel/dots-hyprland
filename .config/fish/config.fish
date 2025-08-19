@@ -18,12 +18,42 @@ if test -f ~/.local/state/quickshell/user/generated/terminal/sequences.txt
 end
 
 alias pamcan pacman
-alias ls 'eza --icons'
 alias clear "printf '\033[2J\033[3J\033[1;1H'"
 alias q 'qs -c ii'
+
+# # Helpful aliases
+alias c="printf '\033[2J\033[3J\033[1;1H'"                             # clear terminal
+alias l='eza -lh --icons=auto'                                         # long list
+alias ls='eza -1 --icons=auto'                                         # short list
+alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
+alias ld='eza -lhD --icons=auto'                                       # long list dirs
+alias lt='eza --icons=auto --tree'                                     # list folder as tree
+alias in='yay -S'                                                    # install package
+alias un='yay -Rns'                                                    # uninstall package
+alias up='yay -Syu'                                                    # update system/package/aur
+alias pl='yay -Qs'                                                     # list installed package
+alias pa='yay -Ss'                                                     # list available package
+alias pc='yay -Sc'                                                     # remove unused cache
+alias po='yay -Qtdq | yay -Rns -'                                      # remove unused packages, also try > $aurhelper -Qqd | $aurhelper -Rsu --print -
+alias vc='code'                                                        # gui code editor
+
+# # Directory navigation shortcuts
+alias ..='cd ..'
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+
+# # Always mkdir a path (this doesn't inhibit functionality to make a single dir)
+alias mkdir='mkdir -p'
     
 
 # function fish_prompt
 #   set_color cyan; echo (pwd)
 #   set_color green; echo '> '
 # end
+
+# source ~/.config/fish/auto-Hypr.fish
+
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

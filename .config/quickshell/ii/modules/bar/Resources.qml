@@ -21,6 +21,15 @@ MouseArea {
         anchors.leftMargin: 4
         anchors.rightMargin: 4
 
+	Resource {
+            iconName: "planner_review"
+            percentage: ResourceUsage.cpuUsage
+            shown: Config.options.bar.resources.alwaysShowCpu || 
+                !(MprisController.activePlayer?.trackTitle?.length > 0) ||
+                root.alwaysShowAllResources
+            Layout.leftMargin: shown ? 6 : 0
+        }
+
         Resource {
             iconName: "memory"
             percentage: ResourceUsage.memoryUsedPercentage
@@ -34,16 +43,6 @@ MouseArea {
                 root.alwaysShowAllResources
             Layout.leftMargin: shown ? 6 : 0
         }
-
-        Resource {
-            iconName: "planner_review"
-            percentage: ResourceUsage.cpuUsage
-            shown: Config.options.bar.resources.alwaysShowCpu || 
-                !(MprisController.activePlayer?.trackTitle?.length > 0) ||
-                root.alwaysShowAllResources
-            Layout.leftMargin: shown ? 6 : 0
-        }
-
     }
 
     ResourcesPopup {

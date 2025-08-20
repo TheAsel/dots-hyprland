@@ -153,9 +153,8 @@ Item { // Bar content region
 
         MouseArea {
             id: rightCenterGroup
-            implicitWidth: rightCenterGroupContent.implicitWidth
+            implicitWidth: rightCenterGroupContent.implicitWidth + 16
             implicitHeight: rightCenterGroupContent.implicitHeight
-            Layout.preferredWidth: root.centerSideModuleWidth
 
             onPressed: {
                 GlobalStates.sidebarRightOpen = !GlobalStates.sidebarRightOpen;
@@ -177,21 +176,12 @@ Item { // Bar content region
                 }
 
                 // Weather
-            	Loader {
-                    Layout.leftMargin: 4
+                Loader {
                     active: Config.options.bar.weather.enable
-
-                    sourceComponent: BarGroup {
-                        WeatherBar {}
-                    }
+                    visible: Config.options.bar.weather.enable
+                    sourceComponent: WeatherBar {}
                 }
             }
-        }
-        
-	SysTray {
-            visible: root.useShortenedForm === 0
-            Layout.fillWidth: false
-            Layout.fillHeight: true
         }
     }
 
@@ -324,10 +314,17 @@ Item { // Bar content region
                 }
             }
 
+            SysTray {
+                visible: root.useShortenedForm === 0
+                Layout.fillWidth: false
+                Layout.fillHeight: true
+            }
+
             Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-            }            
+            }
         }
     }
 }
+

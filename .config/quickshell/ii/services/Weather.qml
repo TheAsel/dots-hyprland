@@ -37,12 +37,29 @@ Singleton {
         temp: 0
     })
 
+    function to24Hour(timeStr) {
+        let [time, modifier] = timeStr.split(" ");
+        let [hours, minutes] = time.split(":");
+
+        hours = parseInt(hours, 10);
+
+        if (modifier === "PM" && hours < 12) {
+            hours += 12;
+        }
+
+        if (modifier === "AM" && hours === 12) {
+            hours = 0;
+        }
+
+        return `${hours.toString().padStart(2, "0")}:${minutes}`;
+    }
+
     function refineData(data) {
         let temp = {};
         temp.uv = data?.current?.uvIndex || 0;
         temp.humidity = (data?.current?.humidity || 0) + "%";
-        temp.sunrise = data?.astronomy?.sunrise || "0.0";
-        temp.sunset = data?.astronomy?.sunset || "0.0";
+	temp.sunrise = to24Hour(data?.astronomy?.sunrise) || "0.0";
+        temp.sunset = to24Hour(data?.astronomy?.sunset)  || "0.0";
         temp.windDir = data?.current?.winddir16Point || "N";
         temp.wCode = data?.current?.weatherCode || "113";
         temp.city = data?.location?.areaName[0]?.value || "City";
@@ -53,7 +70,7 @@ Singleton {
             temp.visib = (data?.current?.visibilityMiles || 0) + " m";
             temp.press = (data?.current?.pressureInches || 0) + " psi";
             temp.temp += (data?.current?.temp_F || 0);
-            temp.temp += " (" + (data?.current?.FeelsLikeF || 0) + ") ";
+            // temp.temp += " (" + (data?.current?.FeelsLikeF || 0) + ") ";
             temp.temp += "\u{02109}";
         } else {
             temp.wind = (data?.current?.windspeedKmph || 0) + " km/h";
@@ -61,7 +78,7 @@ Singleton {
             temp.visib = (data?.current?.visibility || 0) + " km";
             temp.press = (data?.current?.pressure || 0) + " hPa";
             temp.temp += (data?.current?.temp_C || 0);
-            temp.temp += " (" + (data?.current?.FeelsLikeC || 0) + ") ";
+            // temp.temp += " (" + (data?.current?.FeelsLikeC || 0) + ") ";
             temp.temp += "\u{02103}";
         }
         root.data = temp;

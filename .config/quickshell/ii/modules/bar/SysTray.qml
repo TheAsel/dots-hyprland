@@ -13,8 +13,12 @@ Item {
     property bool invertSide: false
     property bool trayOverflowOpen: false
 
-    property list<var> pinnedItems: SystemTray.items.values.filter(i => Config.options.bar.tray.pinnedItems.includes(i.id))
-    property list<var> unpinnedItems: SystemTray.items.values.filter(i => !Config.options.bar.tray.pinnedItems.includes(i.id))
+    property list<var> itemsInUserList: SystemTray.items.values.filter(i => Config.options.bar.tray.pinnedItems.includes(i.id))
+    property list<var> itemsNotInUserList: SystemTray.items.values.filter(i => !Config.options.bar.tray.pinnedItems.includes(i.id))
+    property bool invertPins: Config.options.bar.tray.invertPinnedItems
+    property list<var> pinnedItems: invertPins ? itemsNotInUserList : itemsInUserList
+    property list<var> unpinnedItems: invertPins ? itemsInUserList : itemsNotInUserList
+    onUnpinnedItemsChanged: if (unpinnedItems.length == 0) root.trayOverflowOpen = false;
 
     GridLayout {
         id: gridLayout
@@ -55,10 +59,14 @@ Item {
             StyledPopup {
                 hoverTarget: trayOverflowButton
                 active: root.trayOverflowOpen
+                popupBackgroundMargin: 300 // This should be plenty... makes sure tooltips don't get cutoff (easily)
                 
                 GridLayout {
+                    id: trayOverflowLayout
                     anchors.centerIn: parent
-                    columns: 4
+                    columns: Math.ceil(Math.sqrt(root.unpinnedItems.length))
+                    columnSpacing: 10
+                    rowSpacing: 10
 
                     Repeater {
                         model: root.unpinnedItems

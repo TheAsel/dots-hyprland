@@ -28,13 +28,13 @@ alias ls='eza -1 --icons=auto'                                         # short l
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
 alias ld='eza -lhD --icons=auto'                                       # long list dirs
 alias lt='eza --icons=auto --tree'                                     # list folder as tree
-alias in='yay -S'                                                    # install package
+alias in='yay -S'                                                      # install package
 alias un='yay -Rns'                                                    # uninstall package
-alias up='yay -Syu'                                                    # update system/package/aur
+alias up='yay -Syu && flatpak update'                                  # update system/package/aur
 alias pl='yay -Qs'                                                     # list installed package
 alias pa='yay -Ss'                                                     # list available package
 alias pc='yay -Sc'                                                     # remove unused cache
-alias po='yay -Qtdq | yay -Rns -'                                      # remove unused packages, also try > $aurhelper -Qqd | $aurhelper -Rsu --print -
+alias po='yay -Qtdq | xargs -r yay -Rns && flatpak remove --unused'    # remove unused packages
 alias vc='code'                                                        # gui code editor
 
 # # Directory navigation shortcuts

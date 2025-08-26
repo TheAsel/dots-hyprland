@@ -44,6 +44,7 @@ MouseArea {
             Layout.leftMargin: shown ? 6 : 0
             warningThreshold: Config.options.bar.resources.swapWarningThreshold
         }
+    }
 
     ResourcesPopup {
         hoverTarget: root

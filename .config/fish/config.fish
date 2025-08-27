@@ -22,20 +22,20 @@ alias clear "printf '\033[2J\033[3J\033[1;1H'"
 alias q 'qs -c ii'
 
 # # Helpful aliases
-alias c="printf '\033[2J\033[3J\033[1;1H'"                             # clear terminal
-alias l='eza -lh --icons=auto'                                         # long list
-alias ls='eza -1 --icons=auto'                                         # short list
-alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
-alias ld='eza -lhD --icons=auto'                                       # long list dirs
-alias lt='eza --icons=auto --tree'                                     # list folder as tree
-alias in='yay -S'                                                      # install package
-alias un='yay -Rns'                                                    # uninstall package
-alias up='yay -Syu && flatpak update'                                  # update system/package/aur
-alias pl='yay -Qs'                                                     # list installed package
-alias pa='yay -Ss'                                                     # list available package
-alias pc='yay -Sc'                                                     # remove unused cache
-alias po='yay -Qtdq | xargs -r yay -Rns && flatpak remove --unused'    # remove unused packages
-alias vc='code'                                                        # gui code editor
+alias c="printf '\033[2J\033[3J\033[1;1H'"                                # clear terminal
+alias l='eza -lh --icons=auto'                                            # long list
+alias ls='eza -1 --icons=auto'                                            # short list
+alias ll='eza -lha --icons=auto --sort=name --group-directories-first'    # long list all
+alias ld='eza -lhD --icons=auto'                                          # long list dirs
+alias lt='eza --icons=auto --tree'                                        # list folder as tree
+alias in='yay -S'                                                         # install package
+alias un='yay -Rns'                                                       # uninstall package
+alias up='yay -Syu && flatpak update'                                     # update system/package/aur/flatpak
+alias pl='yay -Qs'                                                        # list installed package
+alias pa='yay -Ss'                                                        # list available package
+alias pc='yay -Sc'                                                        # remove unused cache
+alias po='yay -Qtdq | xargs -r -o yay -Rns && flatpak uninstall --unused' # remove unused packages
+alias vc='code'                                                           # gui code editor
 
 # # Directory navigation shortcuts
 alias ..='cd ..'

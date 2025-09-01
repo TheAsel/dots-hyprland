@@ -20,6 +20,7 @@ end
 abbr pamcan pacman
 abbr clear "printf '\033[2J\033[3J\033[1;1H'"
 abbr q 'qs -c ii'
+abbr ssh 'kitten ssh'
 
 # # Helpful aliases
 abbr c "printf '\033[2J\033[3J\033[1;1H'"                                  # clear terminal

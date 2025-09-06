@@ -55,6 +55,6 @@ if status is-interactive # Commands to run in interactive sessions can go here
 
     # source ~/.config/fish/auto-Hypr.fish
 
-    export BUN_INSTALL="$HOME/.bun"
-    export PATH="$BUN_INSTALL/bin:$PATH"
+    set -x BUN_INSTALL "$HOME/.bun"
+    set -x PATH "$BUN_INSTALL/bin:$PATH"
 end

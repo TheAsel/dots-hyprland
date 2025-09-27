@@ -44,11 +44,16 @@ StyledPopup {
                     color: Appearance.colors.colOnSurfaceVariant
                 }
             }
-            StyledText {
-                id: temp
-                font.pixelSize: Appearance.font.pixelSize.smaller
-                color: Appearance.colors.colOnSurfaceVariant
-                text: Weather.data.temp + " • " + Translation.tr("Feels like %1").arg(Weather.data.tempFeelsLike)
+            RowLayout {
+                Layout.alignment: Qt.AlignHCenter
+                spacing: 6
+                
+            	StyledText {
+                    id: temp
+	            font.pixelSize: Appearance.font.pixelSize.smaller
+        	    color: Appearance.colors.colOnSurfaceVariant
+                    text: Weather.data.temp + " • " + Translation.tr("Feels like %1").arg(Weather.data.tempFeelsLike)
+            	}
             }
         }
 

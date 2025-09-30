@@ -97,7 +97,7 @@ Item { // Bar content region
         }
     }
 
-    RowLayout { // Middle section
+    Row { // Middle section
         id: middleSection
         anchors {
             top: parent.top
@@ -108,8 +108,8 @@ Item { // Bar content region
 
         BarGroup {
             id: leftCenterGroup
-            Layout.preferredWidth: root.centerSideModuleWidth
-            Layout.fillHeight: false
+            anchors.verticalCenter: parent.verticalCenter
+            implicitWidth: root.centerSideModuleWidth
 
             Resources {
                 alwaysShowAllResources: root.useShortenedForm === 2
@@ -128,6 +128,7 @@ Item { // Bar content region
 
         BarGroup {
             id: middleCenterGroup
+            anchors.verticalCenter: parent.verticalCenter
             padding: workspacesWidget.widgetPadding
 
             Workspaces {
@@ -153,7 +154,8 @@ Item { // Bar content region
 
         MouseArea {
             id: rightCenterGroup
-            implicitWidth: rightCenterGroupContent.implicitWidth + 16
+            anchors.verticalCenter: parent.verticalCenter
+            implicitWidth: root.centerSideModuleWidth
             implicitHeight: rightCenterGroupContent.implicitHeight
 
             onPressed: {

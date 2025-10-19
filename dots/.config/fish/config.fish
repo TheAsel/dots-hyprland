@@ -17,8 +17,11 @@ if status is-interactive # Commands to run in interactive sessions can go here
         cat ~/.local/state/quickshell/user/generated/terminal/sequences.txt
     end
 
+    # Use zoxide
+    zoxide init fish | source
+    
     # Aliases
-    abbr pamcan pacman
+    abbr z "cd"
     abbr clear "printf '\033[2J\033[3J\033[1;1H'"
     abbr q 'qs -c ii'
     abbr ssh 'kitten ssh'

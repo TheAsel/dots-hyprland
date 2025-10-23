@@ -21,7 +21,7 @@ if status is-interactive # Commands to run in interactive sessions can go here
     zoxide init fish | source
     
     # Aliases
-    abbr z "cd"
+    abbr cd "z"
     abbr clear "printf '\033[2J\033[3J\033[1;1H'"
     abbr q 'qs -c ii'
     abbr ssh 'kitten ssh'

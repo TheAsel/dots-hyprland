@@ -42,7 +42,8 @@ Singleton {
         visib: 0,
         press: 0,
         temp: 0,
-        tempFeelsLike: 0
+        tempFeelsLike: 0,
+        lastRefresh: 0,
     })
 
     function to24Hour(timeStr) {
@@ -92,6 +93,7 @@ Singleton {
             temp.temp += "°C";
             temp.tempFeelsLike += "°C";
         }
+        temp.lastRefresh = DateTime.time + " • " + DateTime.date;
         root.data = temp;
     }
 

@@ -41,15 +41,86 @@ if status is-interactive # Commands to run in interactive sessions can go here
     abbr po 'paru -Qtdq | xargs -r -o paru -Rns && flatpak uninstall --unused' # remove unused packages
     abbr vc 'code'                                                             # gui code editor
 
-    # # Directory navigation shortcuts
+    # Directory navigation shortcuts
     abbr .. 'cd ..'
     abbr ... 'cd ../..'
     abbr .3 'cd ../../..'
     abbr .4 'cd ../../../..'
     abbr .5 'cd ../../../../..'
 
-    # # Always mkdir a path (this doesn't inhibit functionality to make a single dir)
+    # Always mkdir a path (this doesn't inhibit functionality to make a single dir)
     abbr mkdir 'mkdir -p'
+
+    abbr rm 'trash-d'
+
+    # Sync files from USB to PC
+    function downsync
+        set project_path Work
+        set local_path /home/asel/Documents
+        set usb_path /run/media/asel/Osi_s\ USB
+    
+        # Check for -p or --project flag
+        if test (count $argv) -gt 0
+            if test $argv[1] = "-p" -o $argv[1] = "--project"
+                set project_path "Work/Projects/SA02381A_Traduttore_GVA_LSD"
+            end
+        end
+    
+        # Check if USB is mounted
+        if not mountpoint -q $usb_path
+            echo "❌ USB drive not mounted. Aborting."
+            return 1
+        end
+    
+        # Check if folder exists on USB
+        if not test -d "$usb_path/$project_path"
+            echo "⚠️  Project folder '$usb_path/$project_path' not found on USB."
+            return 1
+        end
+    
+        # Confirmation prompt
+        read -P "Syncing files from USB → PC ($project_path). Confirm? [y/N] " confirm
+        if test $confirm = "y" -o $confirm = "Y" -o $confirm = "yes" -o $confirm = "YES"
+            sudo rsync -av --update --progress "$usb_path/$project_path/" "$local_path/$project_path/"
+    	sudo chown -R asel:asel "$local_path/$project_path/"
+        else
+            echo "Cancelled."
+        end
+    end
+        
+    # Sync files from PC to USB
+    function upsync
+        set project_path Work
+        set local_path /home/asel/Documents
+        set usb_path /run/media/asel/Osi_s\ USB
+    
+        # Check for -p or --project flag
+        if test (count $argv) -gt 0
+            if test $argv[1] = "-p" -o $argv[1] = "--project"
+                set project_path "Work/Projects/SA02381A_Traduttore_GVA_LSD"
+            end
+        end
+    
+        # Check if USB is mounted
+        if not mountpoint -q $usb_path
+            echo "❌ USB drive not mounted. Aborting."
+            return 1
+        end
+    
+        # Check if local folder exists
+        if not test -d "$local_path/$project_path"
+            echo "⚠️  Local folder '$local_path/$project_path' not found."
+            return 1
+        end
+    
+        # Confirmation prompt
+        read -P "Syncing files from PC → USB ($project_path). Confirm? [y/N] " confirm
+        if test $confirm = "y" -o $confirm = "Y" -o $confirm = "yes" -o $confirm = "YES"
+            sudo rsync -av --update --progress "$local_path/$project_path/" "/$usb_path/$project_path/"
+        else
+            echo "Cancelled."
+        end
+    end
 
     # function fish_prompt
     #   set_color cyan; echo (pwd)
@@ -60,4 +131,10 @@ if status is-interactive # Commands to run in interactive sessions can go here
 
     set -x BUN_INSTALL "$HOME/.bun"
     set -x PATH "$BUN_INSTALL/bin:$PATH"
+    set -x GTK_THEME "Adwaita"
+    set -x NDDSHOME "/home/asel/rti_connext_dds-7.3.1/"
+    set -x PATH "$NDDSHOME/bin/:$PATH"
+    set -x DOCKER_BUILDKIT 1
+    set -x COMPOSE_DOCKER_CLI_BUILD 1
+    set -x MICRO_TRUECOLOR 1
 end

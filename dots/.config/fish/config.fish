@@ -51,7 +51,7 @@ if status is-interactive # Commands to run in interactive sessions can go here
     # Always mkdir a path (this doesn't inhibit functionality to make a single dir)
     abbr mkdir 'mkdir -p'
 
-    abbr rm 'trash-d'
+    abbr rm 'trash'
 
     # Sync files from USB to PC
     function downsync

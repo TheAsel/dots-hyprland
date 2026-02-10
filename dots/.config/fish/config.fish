@@ -22,7 +22,9 @@ if status is-interactive # Commands to run in interactive sessions can go here
     
     # Aliases
     abbr cd "z"
-    abbr clear "printf '\033[2J\033[3J\033[1;1H'"
+    abbr clear "printf '\033[2J\033[3J\033[1;1H'" # fix: kitty doesn't clear properly
+    abbr celar "printf '\033[2J\033[3J\033[1;1H'"
+    abbr claer "printf '\033[2J\033[3J\033[1;1H'"
     abbr q 'qs -c ii'
     abbr ssh 'kitten ssh'
 

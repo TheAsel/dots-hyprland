@@ -1,32 +1,37 @@
-function fish_prompt -d "Write out the prompt"
-    # This shows up as USER@HOST /home/user/ >, with the directory colored
-    # $USER and $hostname are set by fish, so you can just use them
-    # instead of using `whoami` and `hostname`
-    printf '%s@%s %s%s%s > ' $USER $hostname \
-        (set_color $fish_color_cwd) (prompt_pwd) (set_color normal)
-end
-
-if status is-interactive # Commands to run in interactive sessions can go here
-
+# Commands to run in interactive sessions can go here
+if status is-interactive
     # No greeting
     set fish_greeting
 
     # Use starship
-    starship init fish | source
+    function starship_transient_prompt_func
+        starship module character
+    end
+    if test "$TERM" != "linux"
+        starship init fish | source
+        enable_transience
+    end
+    
+    # Colors
     if test -f ~/.local/state/quickshell/user/generated/terminal/sequences.txt
         cat ~/.local/state/quickshell/user/generated/terminal/sequences.txt
     end
 
     # Use zoxide
     zoxide init fish | source
-    
+
     # Aliases
-    abbr cd "z"
-    abbr clear "printf '\033[2J\033[3J\033[1;1H'" # fix: kitty doesn't clear properly
-    abbr celar "printf '\033[2J\033[3J\033[1;1H'"
-    abbr claer "printf '\033[2J\033[3J\033[1;1H'"
-    abbr q 'qs -c ii'
+    # kitty doesn't clear properly so we need to do this weird printing
+    alias clear "printf '\033[2J\033[3J\033[1;1H'"
+    alias celar "printf '\033[2J\033[3J\033[1;1H'"
+    alias claer "printf '\033[2J\033[3J\033[1;1H'"
+    alias pamcan pacman
+    alias q 'qs -c ii'
+    if test "$TERM" != "linux"
+        alias ls 'eza --icons'
+    end
     abbr ssh 'kitten ssh'
+    abbr cd "z"
 
     abbr c "printf '\033[2J\033[3J\033[1;1H'"                                  # clear terminal
     abbr l 'eza -lh --icons=auto'                                              # long list

@@ -144,6 +144,7 @@ if status is-interactive
     set -x GTK_THEME "Adwaita"
     set -x NDDSHOME "/home/asel/rti_connext_dds-7.3.1/"
     set -x PATH "$NDDSHOME/bin/:$PATH"
+    set -x PATH "/home/asel/.local/bin/:$PATH"
     set -x DOCKER_BUILDKIT 1
     set -x COMPOSE_DOCKER_CLI_BUILD 1
     set -x MICRO_TRUECOLOR 1

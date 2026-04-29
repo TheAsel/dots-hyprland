@@ -44,7 +44,7 @@ if status is-interactive
     abbr lt 'eza --icons=auto --tree'                                          # list folder as tree
     abbr in 'paru -S'                                                          # install package
     abbr un 'paru -Rns'                                                        # uninstall package
-    abbr up 'paru -Syu && flatpak update'                                      # update system/package/aur/flatpak
+    abbr up 'topgrade'                                                         # update system/package/aur/flatpak
     abbr pl 'paru -Qs'                                                         # list installed package
     abbr pa 'paru -Ss'                                                         # list available package
     abbr pc 'paru -Sc'                                                         # remove unused cache

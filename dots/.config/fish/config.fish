@@ -139,6 +139,7 @@ if status is-interactive
 
     # source ~/.config/fish/auto-Hypr.fish
 
+    set -x EDITOR "micro"
     set -x BUN_INSTALL "$HOME/.bun"
     set -x PATH "$BUN_INSTALL/bin:$PATH"
     set -x GTK_THEME "Adwaita"

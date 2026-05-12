@@ -17,10 +17,10 @@ require("custom/execs")
 require("custom/general")
 require("custom/rules")
 require("custom/keybinds")
+require("custom/variables")
 
--- nwg-displays support: re-add the files if it updates later
--- require("workspaces")
--- require("monitors")
+require("workspaces")
+require("monitors")
 
 -- Shell overrides --
 require("hyprland/shellOverrides/main")

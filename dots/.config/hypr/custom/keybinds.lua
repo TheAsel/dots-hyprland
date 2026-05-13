@@ -26,6 +26,6 @@ hl.bind("ALT + Return", hl.dsp.window.fullscreen({"fullscreen"}, {description = 
 --# Send to workspace
 for i = 1, 10 do
  local numberkey = {10,11,12,13,14,15,16,17,18,19}
- hl.bind("SUPER + SHIFT + code:"..numberkey[i], hl.dsp.window.move({ workspace = i, follow = false}) )
+ hl.bind("SUPER + SHIFT + code:"..numberkey[i], hl.dsp.window.move({ workspace = i, follow = true}) )
 end
 hl.bind("SUPER + F", hl.dsp.exec_cmd(browser), {description = "Browser"} )

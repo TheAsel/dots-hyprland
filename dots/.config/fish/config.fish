@@ -143,7 +143,7 @@ if status is-interactive
     set -x BUN_INSTALL "$HOME/.bun"
     set -x PATH "$BUN_INSTALL/bin:$PATH"
     set -x GTK_THEME "Adwaita"
-    set -x NDDSHOME "/home/asel/rti_connext_dds-7.3.1/"
+    set -x NDDSHOME "/home/asel/rti_connext_dds-7.7.0/"
     set -x PATH "$NDDSHOME/bin/:$PATH"
     set -x PATH "/home/asel/.local/bin/:$PATH"
     set -x DOCKER_BUILDKIT 1

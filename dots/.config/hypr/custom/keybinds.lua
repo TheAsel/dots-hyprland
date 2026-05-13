@@ -22,7 +22,7 @@ hl.bind("SHIFT + SUPER + A", hl.dsp.global("quickshell:sidebarLeftToggle"), {des
 hl.bind("SHIFT + SUPER + K", hl.dsp.global("quickshell:cheatsheetToggle"), {description = "Toggle cheatsheet"} )
 hl.bind("SUPER + Backspace", hl.dsp.global("quickshell:sessionToggle"), {description = "Toggle session menu"} )
 hl.bind("SUPER + W", hl.dsp.window.float({action = "toggle"}), {description = "Float/Tile"}) --# Float/Tile
-hl.bind("ALT + Return", hl.dsp.window.fullscreen({"fullscreen"}, {description = "Fullscreen"}) ) --# Fullscreen
+hl.bind("ALT + Return", hl.dsp.window.fullscreen({mode = "fullscreen", action = "toggle"}), {description = "Fullscreen"} )
 --# Send to workspace
 for i = 1, 10 do
  local numberkey = {10,11,12,13,14,15,16,17,18,19}

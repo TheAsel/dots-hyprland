@@ -35,6 +35,7 @@ if is_file_exists(HOME .. "/.config/hypr/custom/variables.lua") then
     require("custom.variables")
 end
 
+-- nwg-displays support --
 if is_file_exists(HOME .. "/.config/hypr/workspaces.lua") then
     require("workspaces")
 end

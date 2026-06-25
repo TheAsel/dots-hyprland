@@ -52,4 +52,8 @@ Singleton {
             }
         }
     }
+
+    Component.onCompleted: {
+    	toggleInhibit(true)
+    }
 }

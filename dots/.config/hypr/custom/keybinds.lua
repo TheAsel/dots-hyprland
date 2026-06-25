@@ -17,6 +17,7 @@ hl.unbind("SUPER + ALT + 8")
 hl.unbind("SUPER + ALT + 9")
 hl.unbind("SUPER + ALT + 0")
 hl.unbind("SUPER + W")
+hl.unbind("SUPER + O")
 
 hl.bind("SHIFT + SUPER + A", hl.dsp.global("quickshell:sidebarLeftToggle"), {description = "Toggle left sidebar"} )
 hl.bind("SHIFT + SUPER + K", hl.dsp.global("quickshell:cheatsheetToggle"), {description = "Toggle cheatsheet"} )

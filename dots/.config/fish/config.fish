@@ -3,6 +3,8 @@ if status is-interactive
     # No greeting
     set fish_greeting
 
+    fish_config theme choose catppuccin-mocha --color-theme=dark
+
     # Use starship
     function starship_transient_prompt_func
         starship module character

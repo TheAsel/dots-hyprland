@@ -179,14 +179,9 @@ Item { // Bar content region
                     Layout.alignment: Qt.AlignVCenter
                 }
 
-                // Weather
-                    Loader {
-                    Layout.leftMargin: 4
-                    active: Config.options.bar.weather.enable
-
-                    sourceComponent: BarGroup {
-                        WeatherBar {}
-                    }
+                BatteryIndicator {
+               		visible: (root.useShortenedForm < 2 && Battery.available)
+                	Layout.alignment: Qt.AlignVCenter
                 }
             }
         }
@@ -332,6 +327,16 @@ Item { // Bar content region
             Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+            }
+
+            // Weather
+            Loader {
+                Layout.leftMargin: 4
+                active: Config.options.bar.weather.enable
+
+                sourceComponent: BarGroup {
+                    WeatherBar {}
+                }
             }
         }
     }

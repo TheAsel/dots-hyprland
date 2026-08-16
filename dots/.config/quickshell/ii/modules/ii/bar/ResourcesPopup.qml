@@ -15,8 +15,8 @@ StyledPopup {
         anchors.centerIn: parent
         spacing: 12
 
-        Column {
-            anchors.top: parent.top
+        ColumnLayout {
+            Layout.alignment: Qt.AlignTop
             spacing: 8
 
             StyledPopupHeaderRow {
@@ -24,13 +24,11 @@ StyledPopup {
                 label: "CPU"
             }
 
-            Column {
-                spacing: 4
-
+            ColumnLayout {
                 StyledPopupValueRow {
                     icon: "bolt"
                     label: Translation.tr("Load:")
-                    value: (ResourceUsage.cpuUsage > 0.8 ? Translation.tr("High") : ResourceUsage.cpuUsage > 0.4 ? Translation.tr("Medium") : Translation.tr("Low")) + ` (${Math.round(ResourceUsage.cpuUsage * 100)}%)`
+                    value: (ResourceUsage.cpuUsage > 0.8 ? Translation.tr("High") : ResourceUsage.cpuUsage > 0.4 ? Translation.tr("Med") : Translation.tr("Low")) + ` (${Math.round(ResourceUsage.cpuUsage * 100)}%)`
                 }
 
                 StyledPopupValueRow {
@@ -49,8 +47,8 @@ StyledPopup {
 
         }
 
-        Column {
-            anchors.top: parent.top
+        ColumnLayout {
+            Layout.alignment: Qt.AlignTop
             spacing: 8
 
             StyledPopupHeaderRow {
@@ -58,9 +56,7 @@ StyledPopup {
                 label: "RAM"
             }
 
-            Column {
-                spacing: 4
-
+            ColumnLayout {
                 StyledPopupValueRow {
                     icon: "clock_loader_60"
                     label: Translation.tr("Used:")
@@ -100,7 +96,7 @@ StyledPopup {
                 StyledPopupValueRow {
                     icon: "bolt"
                     label: Translation.tr("Load:")
-                    value: (GpuUsage.iGpuUsage > 0.8 ? Translation.tr("High") : GpuUsage.iGpuUsage > 0.4 ? Translation.tr("Medium") : Translation.tr("Low")) + ` (${Math.round(GpuUsage.iGpuUsage  * 100)}%)`
+                    value: (GpuUsage.iGpuUsage > 0.8 ? Translation.tr("High") : GpuUsage.iGpuUsage > 0.4 ? Translation.tr("Med") : Translation.tr("Low")) + ` (${Math.round(GpuUsage.iGpuUsage  * 100)}%)`
                     visible: Config.options?.resources?.gpu?.bar?.iGpu?.showUsage !== false
                 }
 
@@ -139,7 +135,7 @@ StyledPopup {
                 StyledPopupValueRow {
                     icon: "bolt"
                     label: Translation.tr("Load:")
-                    value: (GpuUsage.dGpuUsage > 0.8 ? Translation.tr("High") : GpuUsage.dGpuUsage > 0.4 ? Translation.tr("Medium") : Translation.tr("Low")) + ` (${Math.round(GpuUsage.dGpuUsage  * 100)}%)`
+                    value: (GpuUsage.dGpuUsage > 0.8 ? Translation.tr("High") : GpuUsage.dGpuUsage > 0.4 ? Translation.tr("Med") : Translation.tr("Low")) + ` (${Math.round(GpuUsage.dGpuUsage  * 100)}%)`
                     visible: Config.options?.resources?.gpu?.bar?.dGpu?.showUsage !== false
                 }
 

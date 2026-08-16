@@ -20,6 +20,40 @@ StyledPopup {
             spacing: 8
 
             StyledPopupHeaderRow {
+                icon: "planner_review"
+                label: "CPU"
+            }
+
+            Column {
+                spacing: 4
+
+                StyledPopupValueRow {
+                    icon: "bolt"
+                    label: Translation.tr("Load:")
+                    value: (ResourceUsage.cpuUsage > 0.8 ? Translation.tr("High") : ResourceUsage.cpuUsage > 0.4 ? Translation.tr("Medium") : Translation.tr("Low")) + ` (${Math.round(ResourceUsage.cpuUsage * 100)}%)`
+                }
+
+                StyledPopupValueRow {
+                    icon: "planner_review"
+                    label: Translation.tr("Freq:")
+                    value: ` ${ Math.round(ResourceUsage.cpuFreqency * 100) / 100} GHz`
+                }
+
+                StyledPopupValueRow {
+                    icon: "thermometer"
+                    label: Translation.tr("Temp:")
+                    value: ` ${ Math.round(ResourceUsage.cpuTemperature)} °C`
+                }
+
+            }
+
+        }
+
+        Column {
+            anchors.top: parent.top
+            spacing: 8
+
+            StyledPopupHeaderRow {
                 icon: "memory"
                 label: "RAM"
             }
@@ -43,75 +77,6 @@ StyledPopup {
                     icon: "empty_dashboard"
                     label: Translation.tr("Total:")
                     value: root.formatKB(ResourceUsage.memoryTotal)
-                }
-
-            }
-
-        }
-
-        Column {
-            visible: ResourceUsage.swapTotal > 0
-            anchors.top: parent.top
-            spacing: 8
-
-            StyledPopupHeaderRow {
-                icon: "swap_horiz"
-                label: "Swap"
-            }
-
-            Column {
-                spacing: 4
-
-                StyledPopupValueRow {
-                    icon: "clock_loader_60"
-                    label: Translation.tr("Used:")
-                    value: root.formatKB(ResourceUsage.swapUsed)
-                }
-
-                StyledPopupValueRow {
-                    icon: "check_circle"
-                    label: Translation.tr("Free:")
-                    value: root.formatKB(ResourceUsage.swapFree)
-                }
-
-                StyledPopupValueRow {
-                    icon: "empty_dashboard"
-                    label: Translation.tr("Total:")
-                    value: root.formatKB(ResourceUsage.swapTotal)
-                }
-
-            }
-
-        }
-
-        Column {
-            anchors.top: parent.top
-            spacing: 8
-
-            StyledPopupHeaderRow {
-                icon: "planner_review"
-                label: "CPU"
-            }
-
-            Column {
-                spacing: 4
-
-                StyledPopupValueRow {
-                    icon: "bolt"
-                    label: Translation.tr("Load:")
-                    value: ` (${Math.round(ResourceUsage.cpuUsage * 100)}%`
-                }
-
-                StyledPopupValueRow {
-                    icon: "planner_review"
-                    label: Translation.tr("Freq:")
-                    value: ` ${ Math.round(ResourceUsage.cpuFreqency * 100) / 100} GHz`
-                }
-
-                StyledPopupValueRow {
-                    icon: "thermometer"
-                    label: Translation.tr("Temp:")
-                    value: ` ${ Math.round(ResourceUsage.cpuTemperature)} °C`
                 }
 
             }
@@ -167,7 +132,7 @@ StyledPopup {
 
             StyledPopupHeaderRow {
                 icon: "empty_dashboard"
-                label: "DGPU"
+                label: "GPU"
             }
 
             ColumnLayout {

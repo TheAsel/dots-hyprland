@@ -200,7 +200,7 @@ StyledOverlayWidget {
         },
         {
             icon: "empty_dashboard",
-            name: Translation.tr("DGPU"),
+            name: Translation.tr("GPU"),
             history: (Config.options?.resources?.enableGpu !== false) ? GpuUsage.dGpuUsageHistory : [],
             maxAvailableString: GpuUsage.maxAvailableDGpuString,
             available: (Config.options?.resources?.enableGpu === false && Config.options?.resources?.gpu?.overlay?.showDGpu !== false) ||
